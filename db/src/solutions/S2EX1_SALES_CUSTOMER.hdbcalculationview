@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sol::S2EX1_SALES_CUSTOMER" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Section 2, Exercise 1 Sales by customer"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SalesOrder">
+    <resourceUri>SalesOrder</resourceUri>
+  </DataSource>
+  <DataSource id="BusinessPartner">
+    <resourceUri>BusinessPartner</resourceUri>
+  </DataSource>
+  <DataSource id="BusinessPartnerContacts">
+    <resourceUri>BusinessPartnerContacts</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="J_SO_BP" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PartnerId">
+        <descriptions defaultDescription="PartnerId"/>
+      </viewAttribute>
+      <viewAttribute id="PartnerRole">
+        <descriptions defaultDescription="PartnerRole"/>
+      </viewAttribute>
+      <viewAttribute id="AddressId">
+        <descriptions defaultDescription="AddressId"/>
+      </viewAttribute>
+      <viewAttribute id="FIRST_NAME">
+        <descriptions defaultDescription="FIRST_NAME"/>
+      </viewAttribute>
+      <viewAttribute id="LAST_NAME">
+        <descriptions defaultDescription="LAST_NAME"/>
+      </viewAttribute>
+      <viewAttribute id="PHONE_NUMBER">
+        <descriptions defaultDescription="PHONE_NUMBER"/>
+      </viewAttribute>
+      <viewAttribute id="GENDER">
+        <descriptions defaultDescription="GENDER"/>
+      </viewAttribute>
+      <viewAttribute id="TITLE">
+        <descriptions defaultDescription="TITLE"/>
+      </viewAttribute>
+      <viewAttribute id="BillingStatus">
+        <descriptions defaultDescription="BillingStatus"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedAt">
+        <descriptions defaultDescription="CreatedAt"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedBy">
+        <descriptions defaultDescription="CreatedBy"/>
+      </viewAttribute>
+      <viewAttribute id="Currency">
+        <descriptions defaultDescription="Currency"/>
+      </viewAttribute>
+      <viewAttribute id="DeliveryStatus">
+        <descriptions defaultDescription="DeliveryStatus"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount" aggregationType="sum">
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="SalesOrderId">
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="J_BP_BPC">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerId" source="PartnerId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerRole" source="PartnerRole"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AddressId" source="AddressId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PHONE_NUMBER" source="PHONE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="TITLE"/>
+    </input>
+    <input node="Proj_SO">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BillingStatus" source="BillingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryStatus" source="DeliveryStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerId" source="PartnerId"/>
+    </input>
+    <joinAttribute name="PartnerId"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_BP_BPC" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PartnerId">
+        <descriptions defaultDescription="PartnerId"/>
+      </viewAttribute>
+      <viewAttribute id="PartnerRole">
+        <descriptions defaultDescription="PartnerRole"/>
+      </viewAttribute>
+      <viewAttribute id="AddressId">
+        <descriptions defaultDescription="AddressId"/>
+      </viewAttribute>
+      <viewAttribute id="FIRST_NAME">
+        <descriptions defaultDescription="FIRST_NAME"/>
+      </viewAttribute>
+      <viewAttribute id="LAST_NAME">
+        <descriptions defaultDescription="LAST_NAME"/>
+      </viewAttribute>
+      <viewAttribute id="PHONE_NUMBER">
+        <descriptions defaultDescription="PHONE_NUMBER"/>
+      </viewAttribute>
+      <viewAttribute id="GENDER">
+        <descriptions defaultDescription="GENDER"/>
+      </viewAttribute>
+      <viewAttribute id="TITLE">
+        <descriptions defaultDescription="TITLE"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Proj_BP">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerId" source="PartnerId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerRole" source="PartnerRole"/>
+    </input>
+    <input node="Proj_BPC">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AddressId" source="AddressId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PHONE_NUMBER" source="PHONE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="TITLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerId" source="ContactId"/>
+    </input>
+    <joinAttribute name="PartnerId"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_SO">
+    <viewAttributes>
+      <viewAttribute id="BillingStatus">
+        <descriptions defaultDescription="BillingStatus"/>
+      </viewAttribute>
+      <viewAttribute id="ChangedAt">
+        <descriptions defaultDescription="ChangedAt"/>
+      </viewAttribute>
+      <viewAttribute id="ChangedBy">
+        <descriptions defaultDescription="ChangedBy"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedAt">
+        <descriptions defaultDescription="CreatedAt"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedBy">
+        <descriptions defaultDescription="CreatedBy"/>
+      </viewAttribute>
+      <viewAttribute id="Currency">
+        <descriptions defaultDescription="Currency"/>
+      </viewAttribute>
+      <viewAttribute id="DeliveryStatus">
+        <descriptions defaultDescription="DeliveryStatus"/>
+      </viewAttribute>
+      <viewAttribute id="GrossAmount" aggregationType="sum">
+        <descriptions defaultDescription="GrossAmount"/>
+      </viewAttribute>
+      <viewAttribute id="LifecycleStatus">
+        <descriptions defaultDescription="LifecycleStatus"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount" aggregationType="sum">
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="NoteId">
+        <descriptions defaultDescription="NoteId"/>
+      </viewAttribute>
+      <viewAttribute id="PartnerId">
+        <descriptions defaultDescription="PartnerId"/>
+      </viewAttribute>
+      <viewAttribute id="SalesOrderId">
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute>
+      <viewAttribute id="TaxAmount" aggregationType="sum">
+        <descriptions defaultDescription="TaxAmount"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SalesOrder">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BillingStatus" source="BillingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChangedAt" source="ChangedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChangedBy" source="ChangedBy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryStatus" source="DeliveryStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossAmount" source="GrossAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LifecycleStatus" source="LifecycleStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NoteId" source="NoteId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerId" source="PartnerId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TaxAmount" source="TaxAmount"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_BP" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="PartnerId">
+        <descriptions defaultDescription="PartnerId"/>
+      </viewAttribute>
+      <viewAttribute id="PartnerRole">
+        <descriptions defaultDescription="PartnerRole"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="BusinessPartner">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerId" source="PartnerId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PartnerRole" source="PartnerRole"/>
+    </input>
+    <filter>&quot;PartnerRole&quot;='01'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_BPC">
+    <viewAttributes>
+      <viewAttribute id="AddressId">
+        <descriptions defaultDescription="AddressId"/>
+      </viewAttribute>
+      <viewAttribute id="FIRST_NAME">
+        <descriptions defaultDescription="FIRST_NAME"/>
+      </viewAttribute>
+      <viewAttribute id="LAST_NAME">
+        <descriptions defaultDescription="LAST_NAME"/>
+      </viewAttribute>
+      <viewAttribute id="PHONE_NUMBER">
+        <descriptions defaultDescription="PHONE_NUMBER"/>
+      </viewAttribute>
+      <viewAttribute id="GENDER">
+        <descriptions defaultDescription="SEX"/>
+      </viewAttribute>
+      <viewAttribute id="TITLE">
+        <descriptions defaultDescription="TITLE"/>
+      </viewAttribute>
+      <viewAttribute id="ContactId">
+        <descriptions defaultDescription="ContactId"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="BusinessPartnerContacts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AddressId" source="AddressId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PHONE_NUMBER" source="PHONE_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="SEX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="TITLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ContactId" source="ContactId"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="J_SO_BP">
+  <attributes>
+    <attribute id="PartnerId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PartnerId"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="PartnerId"/>
+    </attribute>
+    <attribute id="PartnerRole" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PartnerRole"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="PartnerRole"/>
+    </attribute>
+    <attribute id="AddressId" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AddressId"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="AddressId"/>
+    </attribute>
+    <attribute id="FIRST_NAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FIRST_NAME"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="FIRST_NAME"/>
+    </attribute>
+    <attribute id="LAST_NAME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAST_NAME"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="LAST_NAME"/>
+    </attribute>
+    <attribute id="PHONE_NUMBER" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PHONE_NUMBER"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="PHONE_NUMBER"/>
+    </attribute>
+    <attribute id="GENDER" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GENDER"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="GENDER"/>
+    </attribute>
+    <attribute id="TITLE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="TITLE"/>
+    </attribute>
+    <attribute id="BillingStatus" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BillingStatus"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="BillingStatus"/>
+    </attribute>
+    <attribute id="CreatedAt" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedAt"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="CreatedAt"/>
+    </attribute>
+    <attribute id="CreatedBy" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedBy"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="CreatedBy"/>
+    </attribute>
+    <attribute id="Currency" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="Currency"/>
+    </attribute>
+    <attribute id="DeliveryStatus" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DeliveryStatus"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="DeliveryStatus"/>
+    </attribute>
+    <attribute id="SalesOrderId" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderId"/>
+      <keyMapping columnObjectName="J_SO_BP" columnName="SalesOrderId"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="NetAmount" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetAmount"/>
+      <measureMapping columnObjectName="J_SO_BP" columnName="NetAmount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="J_SO_BP" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="206"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="J_BP_BPC" modelObjectNameSpace="J_SO_BP" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Proj_SO" modelObjectNameSpace="J_SO_BP" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_BP_BPC" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="311"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Proj_BP" modelObjectNameSpace="J_BP_BPC" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Proj_BPC" modelObjectNameSpace="J_BP_BPC" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_SO" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="333" y="302"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_BP" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="415"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_BPC" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="324" y="415"/>
+      <rectangleSize height="30" width="183"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

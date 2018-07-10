@@ -1,0 +1,36 @@
+{
+  "sales_demo":{
+    "object_owner":{
+      "schema_privileges":[  
+        {  
+          "reference":"DMM260",
+          "privileges_with_grant_option":["SELECT", "SELECT METADATA"]
+        },
+         {  
+          "reference":"DMM260_SYS",
+          "privileges_with_grant_option":["SELECT", "SELECT METADATA"]
+        },
+         {  
+          "reference":"_SYS_BI",
+          "privileges_with_grant_option":["SELECT"]
+        }
+      ]
+    },
+    "application_user":{
+      "schema_privileges":[ 
+        { 
+          "reference":"DMM260",
+          "privileges_with_grant_option":["SELECT", "SELECT METADATA"]
+        },
+        { 
+          "reference":"DMM260_SYS",
+          "privileges_with_grant_option":["SELECT", "SELECT METADATA"]
+        },
+         {  
+          "reference":"_SYS_BI",
+          "privileges_with_grant_option":["SELECT"]
+        }
+      ]
+    }
+  }
+}

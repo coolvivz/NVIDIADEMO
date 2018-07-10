@@ -1,0 +1,27 @@
+ID: HBD170
+_schema-version: '2.0'
+description: template for students
+version: 0.0.1
+
+modules:
+ - name: db
+   type: hdb
+   path: db
+   requires:
+    - name: hdi-container
+      properties:
+        TARGET_CONTAINER: ~{hdi-container-name}
+    - name: upsService
+
+resources:
+ - name: hdi-container
+   parameters:
+      config:
+         schema: HDB170_600
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
+ - name: upsService
+   type: org.cloudfoundry.existing-service
+   parameters:
+      service-name: sales_demo

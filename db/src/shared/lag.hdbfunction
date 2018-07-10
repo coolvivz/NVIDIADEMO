@@ -1,0 +1,31 @@
+FUNCTION "lag" (IN inTab table (
+	"date" NVARCHAR(10),
+	"close" DECIMAL(11,4),
+	 "volume" DECIMAL(17,4),
+	 "open" DECIMAL(11,4),
+	 "high" DECIMAL(11,4),
+	 "low" DECIMAL(11,4)
+         )
+         )
+RETURNS table (
+	"date" NVARCHAR(10),
+	"close" DECIMAL(11,4),
+	 "lag1" DECIMAL(11,4),
+	 "lag2" DECIMAL(11,4),
+	 "lag3" DECIMAL(11,4)
+         )
+        LANGUAGE SQLSCRIPT
+        SQL SECURITY INVOKER AS
+BEGIN
+RETURN
+	select 
+		"date",
+		"close" ,
+		LAG("close",1,NULL) over (order by "date") "lag1",
+		LAG("close",2,NULL) over (order by "date") "lag2",
+		LAG("close",3,NULL) over (order by "date") "lag3"
+ from 
+	:inTab 
+ order by 
+	"date";
+END;

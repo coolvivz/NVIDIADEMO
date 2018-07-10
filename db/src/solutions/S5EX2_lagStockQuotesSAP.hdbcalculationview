@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sol::S5EX2_lagStockQuotesSAP" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="S5EX1_lagStockQuotesSAP"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="historicalQuotesSAP">
+    <resourceUri>historicalQuotesSAP</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SAPQuotes">
+    <viewAttributes>
+      <viewAttribute id="close" aggregationType="sum">
+        <descriptions defaultDescription="close"/>
+      </viewAttribute>
+      <viewAttribute id="date">
+        <descriptions defaultDescription="date"/>
+      </viewAttribute>
+      <viewAttribute id="high" aggregationType="sum">
+        <descriptions defaultDescription="high"/>
+      </viewAttribute>
+      <viewAttribute id="low" aggregationType="sum">
+        <descriptions defaultDescription="low"/>
+      </viewAttribute>
+      <viewAttribute id="open" aggregationType="sum">
+        <descriptions defaultDescription="open"/>
+      </viewAttribute>
+      <viewAttribute id="volume" aggregationType="sum">
+        <descriptions defaultDescription="volume"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="historicalQuotesSAP">
+      <mapping xsi:type="Calculation:AttributeMapping" target="close" source="close"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="high" source="high"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="low" source="low"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="open" source="open"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="volume" source="volume"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:TableFunctionView" id="calculateLags" tableFunctionName="lag">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SAPQuotes" tableParameterName="INTAB">
+      <mapping xsi:type="Calculation:AttributeMapping" target="close" source="close"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="high" source="high"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="low" source="low"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="open" source="open"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="volume" source="volume"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="CalculateDifAndYear">
+    <viewAttributes>
+      <viewAttribute id="close" aggregationType="sum">
+        <descriptions defaultDescription="close"/>
+      </viewAttribute>
+      <viewAttribute id="lag1" aggregationType="sum">
+        <descriptions defaultDescription="lag1"/>
+      </viewAttribute>
+      <viewAttribute id="lag2" aggregationType="sum">
+        <descriptions defaultDescription="lag2"/>
+      </viewAttribute>
+      <viewAttribute id="lag3" aggregationType="sum">
+        <descriptions defaultDescription="lag3"/>
+      </viewAttribute>
+      <viewAttribute id="date">
+        <descriptions defaultDescription="date"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="difClose" datatype="DECIMAL" length="11" scale="4" expressionLanguage="SQL">
+        <formula>&quot;close&quot;-&quot;lag1&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="year" datatype="VARCHAR" length="4" expressionLanguage="SQL">
+        <formula>left(&quot;date&quot;,4)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="calculateLags">
+      <mapping xsi:type="Calculation:AttributeMapping" target="close" source="close"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lag1" source="lag1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lag2" source="lag2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lag3" source="lag3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="close" aggregationType="sum">
+        <descriptions defaultDescription="close"/>
+      </viewAttribute>
+      <viewAttribute id="lag1" aggregationType="sum">
+        <descriptions defaultDescription="lag1"/>
+      </viewAttribute>
+      <viewAttribute id="lag2" aggregationType="sum">
+        <descriptions defaultDescription="lag2"/>
+      </viewAttribute>
+      <viewAttribute id="lag3" aggregationType="sum">
+        <descriptions defaultDescription="lag3"/>
+      </viewAttribute>
+      <viewAttribute id="date">
+        <descriptions defaultDescription="date"/>
+      </viewAttribute>
+      <viewAttribute id="difClose" aggregationType="sum">
+        <descriptions defaultDescription="difClose"/>
+      </viewAttribute>
+      <viewAttribute id="year">
+        <descriptions defaultDescription="year"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CalculateDifAndYear">
+      <mapping xsi:type="Calculation:AttributeMapping" target="close" source="close"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lag1" source="lag1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lag2" source="lag2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="lag3" source="lag3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="difClose" source="difClose"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="year" source="year"/>
+    </input>
+    <windowFunction>
+      <partitionViewAttributeName>year</partitionViewAttributeName>
+      <order byViewAttributeName="difClose" direction="DESC"/>
+      <rankThreshold>
+        <value>5</value>
+      </rankThreshold>
+    </windowFunction>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="year" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="Rank_1" columnName="year"/>
+    </attribute>
+    <attribute id="date" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="date"/>
+      <keyMapping columnObjectName="Rank_1" columnName="date"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="difClose" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="difClose"/>
+      <measureMapping columnObjectName="Rank_1" columnName="difClose"/>
+    </measure>
+    <measure id="close" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="close"/>
+      <measureMapping columnObjectName="Rank_1" columnName="close"/>
+    </measure>
+    <measure id="lag1" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="lag1"/>
+      <measureMapping columnObjectName="Rank_1" columnName="lag1"/>
+    </measure>
+    <measure id="lag3" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="lag3"/>
+      <measureMapping columnObjectName="Rank_1" columnName="lag3"/>
+    </measure>
+  
+    <measure id="lag2" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="lag2"/>
+      <measureMapping columnObjectName="Rank_1" columnName="lag2"/>
+    </measure></baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SAPQuotes" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="547"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="calculateLags" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="427"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="CalculateDifAndYear" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

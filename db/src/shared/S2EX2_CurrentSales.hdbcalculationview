@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="db.shared::S2EX2_CurrentSales" applyPrivilegeType="NONE" dataCategory="CUBE" dimensionType="" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" calculationScenarioType="TREE_BASED" enforceSqlExecution="false">
+<descriptions defaultDescription="S2EX2_CurrentSales"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TimeDim">
+    <resourceUri>TimeDim</resourceUri>
+  </DataSource>
+  <DataSource id="OrgEmployees">
+    <resourceUri>OrgEmployees</resourceUri>
+  </DataSource>
+  <DataSource id="OrgUnits">
+    <resourceUri>OrgUnits</resourceUri>
+  </DataSource>
+  <DataSource id="SalesOrderItem">
+    <resourceUri>SalesOrderItem</resourceUri>
+  </DataSource>
+  <DataSource id="SalesOrder">
+    <resourceUri>SalesOrder</resourceUri>
+  </DataSource>
+  <DataSource id="Products">
+    <resourceUri>Products</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="J_SO_ORG" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="SalesOrderId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute>
+      <viewAttribute id="ProductId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount"><descriptions/><descriptions/>
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedAt"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedAt"/>
+      </viewAttribute>
+      <viewAttribute id="OrgUnitName"><descriptions/><descriptions/>
+        <descriptions defaultDescription="OrgUnitName"/>
+      </viewAttribute>
+      <viewAttribute id="SALESCHANNEL"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SALESCHANNEL"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedBy"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedBy"/>
+      </viewAttribute>
+    
+      <viewAttribute id="YEAR">
+        <descriptions defaultDescription="YEAR"/>
+      </viewAttribute>
+      <viewAttribute id="MONTH">
+        <descriptions defaultDescription="MONTH"/>
+      </viewAttribute>
+      <viewAttribute id="YEARMONTH">
+        <descriptions defaultDescription="YEARMONTH"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="J_SO_TIME">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEARMONTH" source="YEARMONTH"/>
+    </input>
+  
+    <input node="J_Org">
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="EmployeeId"/>
+  
+    </input>
+    <joinAttribute name="CreatedBy"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_SO_TIME" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="SalesOrderId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute>
+      <viewAttribute id="ProductId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount"><descriptions/><descriptions/>
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedAt"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedAt"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedBy"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedBy"/>
+      </viewAttribute>
+    
+      <viewAttribute id="YEAR">
+        <descriptions defaultDescription="YEAR"/>
+      </viewAttribute>
+      <viewAttribute id="MONTH">
+        <descriptions defaultDescription="MONTH"/>
+      </viewAttribute>
+      <viewAttribute id="YEARMONTH">
+        <descriptions defaultDescription="YEARMONTH"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="J_SO_SOI">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+    </input>
+  
+    <input node="Proj_Time">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEARMONTH" source="YEARMONTH"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="DATE_SQL"/>
+  
+    </input>
+    <joinAttribute name="CreatedAt"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Org" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="OrgUnitName"><descriptions/><descriptions/>
+        <descriptions defaultDescription="OrgUnitName"/>
+      </viewAttribute>
+      <viewAttribute id="SALESCHANNEL"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SALESCHANNEL"/>
+      </viewAttribute>
+      <viewAttribute id="EmployeeId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="EmployeeId"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$OrgUnitId$OrgUnitId"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Proj_Emp">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EmployeeId" source="EmployeeId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$OrgUnitId$OrgUnitId" source="OrgUnitId"/>
+    </input>
+    <input node="Proj_OrgUnits">
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$OrgUnitId$OrgUnitId" source="OrgUnitId"/>
+    </input>
+    <joinAttribute name="JOIN$OrgUnitId$OrgUnitId"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_SO_SOI" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="SalesOrderId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute>
+      <viewAttribute id="ProductId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount"><descriptions/><descriptions/>
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedAt"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedAt"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedBy"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedBy"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Proj_SOI">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+    </input>
+    <input node="Proj_SO">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+    </input>
+    <joinAttribute name="SalesOrderId"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_Time">
+    <viewAttributes>
+      <viewAttribute id="YEAR"><descriptions/><descriptions/>
+        <descriptions defaultDescription="YEAR"/>
+      </viewAttribute>
+      <viewAttribute id="MONTH"><descriptions/><descriptions/>
+        <descriptions defaultDescription="MONTH"/>
+      </viewAttribute>
+    
+      <viewAttribute id="DATE_SQL"><descriptions/><descriptions/>
+        <descriptions defaultDescription="DATE_SQL"/>
+      </viewAttribute></viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="YEARMONTH" datatype="VARCHAR" length="6" expressionLanguage="COLUMN_ENGINE">
+        <formula>&quot;YEAR&quot;+&quot;MONTH&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="TimeDim">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE_SQL" source="DATE_SQL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_Emp">
+    <viewAttributes>
+      <viewAttribute id="EmployeeId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="EmployeeId"/>
+      </viewAttribute>
+      <viewAttribute id="OrgUnitId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="OrgUnitId"/>
+      </viewAttribute>
+      <viewAttribute id="ManagerId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ManagerId"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="OrgEmployees">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EmployeeId" source="EmployeeId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitId" source="OrgUnitId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ManagerId" source="ManagerId"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_OrgUnits">
+    <viewAttributes>
+      <viewAttribute id="OrgUnitName"><descriptions/><descriptions/>
+        <descriptions defaultDescription="OrgUnitName"/>
+      </viewAttribute>
+      <viewAttribute id="SALESCHANNEL"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SALESCHANNEL"/>
+      </viewAttribute>
+    
+      <viewAttribute id="OrgUnitId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="OrgUnitId"/>
+      </viewAttribute>
+      <viewAttribute id="ManagerID"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ManagerID"/>
+      </viewAttribute>
+      <viewAttribute id="ParentOrgUnitID"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ParentOrgUnitID"/>
+      </viewAttribute>
+      <viewAttribute id="ParentOrgUnitName"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ParentOrgUnitName"/>
+      </viewAttribute></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="OrgUnits">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ManagerID" source="ManagerID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitId" source="OrgUnitId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParentOrgUnitID" source="ParentOrgUnitID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParentOrgUnitName" source="ParentOrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_SOI">
+    <viewAttributes>
+      <viewAttribute id="SalesOrderId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute>
+      <viewAttribute id="ProductId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount"><descriptions/><descriptions/>
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SalesOrderItem">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_SO">
+    <viewAttributes>
+      <viewAttribute id="CreatedAt"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedAt"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedBy"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedBy"/>
+      </viewAttribute>
+    
+      <viewAttribute id="SalesOrderId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SalesOrder">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_SO_Prod" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="SalesOrderId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SalesOrderId"/>
+      </viewAttribute>
+      <viewAttribute id="ProductId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount"><descriptions/><descriptions/>
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedAt"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedAt"/>
+      </viewAttribute>
+      <viewAttribute id="OrgUnitName"><descriptions/><descriptions/>
+        <descriptions defaultDescription="OrgUnitName"/>
+      </viewAttribute>
+      <viewAttribute id="SALESCHANNEL"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SALESCHANNEL"/>
+      </viewAttribute>
+      <viewAttribute id="CreatedBy"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CreatedBy"/>
+      </viewAttribute>
+      <viewAttribute id="ProductCategory"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ProductCategory"/>
+      </viewAttribute>
+    
+      <viewAttribute id="YEAR">
+        <descriptions defaultDescription="YEAR"/>
+      </viewAttribute>
+      <viewAttribute id="MONTH">
+        <descriptions defaultDescription="MONTH"/>
+      </viewAttribute>
+      <viewAttribute id="YEARMONTH">
+        <descriptions defaultDescription="YEARMONTH"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="J_SO_ORG">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderId" source="SalesOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEARMONTH" source="YEARMONTH"/>
+    </input>
+    <input node="Pro_Product">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductCategory" source="ProductCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+    </input>
+    <joinAttribute name="ProductId"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Pro_Product">
+    <viewAttributes>
+      <viewAttribute id="ProductCategory"><descriptions/><descriptions/>
+        <descriptions defaultDescription="Category"/>
+      </viewAttribute>
+    
+      <viewAttribute id="ProductId"><descriptions/><descriptions/>
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Products">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductCategory" source="Category"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="J_SO_Prod">
+  <attributes>
+    <attribute id="SalesOrderId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderId"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="SalesOrderId"/>
+    </attribute>
+    <attribute id="ProductId" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProductId"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="ProductId"/>
+    </attribute>
+    <attribute id="CreatedAt" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedAt"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="CreatedAt"/>
+    </attribute>
+    <attribute id="OrgUnitName" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OrgUnitName"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="OrgUnitName"/>
+    </attribute>
+    <attribute id="SALESCHANNEL" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESCHANNEL"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="SALESCHANNEL"/>
+    </attribute>
+    <attribute id="CreatedBy" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedBy"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="CreatedBy"/>
+    </attribute>
+    <attribute id="ProductCategory" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProductCategory"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="ProductCategory"/>
+    </attribute>
+  
+    <attribute id="YEAR" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR"/>
+  
+      <keyMapping columnObjectName="J_SO_Prod" columnName="YEAR"/>
+  
+    </attribute>
+    <attribute id="MONTH" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MONTH"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="MONTH"/>
+    </attribute>
+    <attribute id="YEARMONTH" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEARMONTH"/>
+      <keyMapping columnObjectName="J_SO_Prod" columnName="YEARMONTH"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="NetAmount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetAmount"/>
+      <measureMapping columnObjectName="J_SO_Prod" columnName="NetAmount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="394" y="112"/>
+    
+      <rectangleSize width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="J_SO_ORG" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="372" y="297"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="J_SO_TIME" modelObjectNameSpace="J_SO_ORG" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="J_Org" modelObjectNameSpace="J_SO_ORG" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_SO_TIME" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="115" y="417"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="J_SO_SOI" modelObjectNameSpace="J_SO_TIME" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Proj_Time" modelObjectNameSpace="J_SO_TIME" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_Org" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="421" y="417"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Proj_Emp" modelObjectNameSpace="J_Org" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Proj_OrgUnits" modelObjectNameSpace="J_Org" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_SO_SOI" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="283" y="537"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Proj_SOI" modelObjectNameSpace="J_SO_SOI" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Proj_SO" modelObjectNameSpace="J_SO_SOI" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_Time" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="537"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Proj_Emp" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="474" y="537"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_OrgUnits" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="640" y="537"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Proj_SOI" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="369" y="657"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_SO" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="179" y="657"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_SO_Prod" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="372" y="217"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="J_SO_ORG" modelObjectNameSpace="J_SO_Prod" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Pro_Product" modelObjectNameSpace="J_SO_Prod" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Pro_Product" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="630" y="298"/>
+      <rectangleSize height="30" width="140"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

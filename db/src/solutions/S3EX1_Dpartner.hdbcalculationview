@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sol::S3EX1_Dpartner" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="S3EX1_Dpartner"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="BusinessPartner">
+    <resourceUri>BusinessPartner</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="BusinessPartner">
+  <attributes>
+    <attribute id="AddressId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AddressId"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="AddressId"/>
+    </attribute>
+    <attribute id="ChangedAt" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChangedAt"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="ChangedAt"/>
+    </attribute>
+    <attribute id="ChangedBy" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChangedBy"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="ChangedBy"/>
+    </attribute>
+    <attribute id="CompanyName" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyName"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="CompanyName"/>
+    </attribute>
+    <attribute id="CreatedAt" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedAt"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="CreatedAt"/>
+    </attribute>
+    <attribute id="CreatedBy" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedBy"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="CreatedBy"/>
+    </attribute>
+    <attribute id="Currency" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="Currency"/>
+    </attribute>
+    <attribute id="EmailAddress" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EmailAddress"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="EmailAddress"/>
+    </attribute>
+    <attribute id="FaxNumber" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FaxNumber"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="FaxNumber"/>
+    </attribute>
+    <attribute id="LegalForm" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LegalForm"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="LegalForm"/>
+    </attribute>
+    <attribute id="PartnerId" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PartnerId"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="PartnerId"/>
+    </attribute>
+    <attribute id="PartnerRole" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PartnerRole"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="PartnerRole"/>
+    </attribute>
+    <attribute id="PhoneNumber" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PhoneNumber"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="PhoneNumber"/>
+    </attribute>
+    <attribute id="WebAddress" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WebAddress"/>
+      <keyMapping columnObjectName="BusinessPartner" columnName="WebAddress"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

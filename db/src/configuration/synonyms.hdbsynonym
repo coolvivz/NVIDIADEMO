@@ -1,0 +1,183 @@
+{
+  "TCURR_RATES": {
+    "target": {
+      "object": "TCURR",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "TCURF_PREFACTORS": {
+    "target": {
+      "object": "TCURF",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "TCURX_PRECISIONS": {
+    "target": {
+      "object": "TCURX",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "TCURV_CONFIGURATIONS": {
+    "target": {
+      "object": "TCURV",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "TCURN_NOTATIONS": {
+    "target": {
+      "object": "TCURN",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "T006_UOM_RATES": {
+    "target": {
+      "object": "T006",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "T006A": {
+    "target": {
+      "object": "T006A",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "T006D_UOM_DIMENSION": {
+    "target": {
+      "object": "T006D",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "TCURC": {
+    "target": {
+      "object": "TCURC",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "TCURT": {
+    "target": {
+      "object": "TCURT",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "TCURW": {
+    "target": {
+      "object": "TCURW",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "PRUNING_CONFIG": {
+    "target": {
+      "object": "PRUNING_CONFIG",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "AUTHORIZATION_FILTERS": {
+    "target": {
+      "object": "AUTHORIZATION_FILTERS",
+      "schema": "DMM260_SYS"
+    }
+  },
+  "Addresses": {
+    "target": {
+      "object": "Addresses_REGION_ADDED",
+      "schema": "DMM260"
+    }
+  },
+  "BusinessPartner": {
+    "target": {
+      "object": "BusinessPartner",
+      "schema": "DMM260"
+    }
+  },
+  "BusinessPartnerContacts": {
+    "target": {
+      "object": "BusinessPartnerContacts",
+      "schema": "DMM260"
+    }
+  },
+  "BusinessPartnerStatus": {
+    "target": {
+      "object": "BusinessPartnerStatus",
+      "schema": "DMM260"
+    }
+  },
+  "OrgEmployees": {
+    "target": {
+      "object": "OrgEmployees",
+      "schema": "DMM260"
+    }
+  },
+  "OrgSecurity": {
+    "target": {
+      "object": "OrgSecurity",
+      "schema": "DMM260"
+    }
+  },
+  "OrgUnits": {
+    "target": {
+      "object": "OrgUnits",
+      "schema": "DMM260"
+    }
+  },
+  
+  "TimeDim": {
+    "target": {
+      "object": "TimeDim",
+      "schema": "DMM260"
+    }
+  },
+  "PurchaseOrder": {
+    "target": {
+      "object": "PurchaseOrder",
+      "schema": "DMM260"
+    }
+  },
+  "PurchaseOrderItem": {
+    "target": {
+      "object": "PurchaseOrderItem",
+      "schema": "DMM260"
+    }
+  },
+  "SalesOrder": {
+    "target": {
+      "object": "SalesOrder",
+      "schema": "DMM260"
+    }
+  },
+  "SalesPlan": {
+    "target": {
+      "object": "SalesPlan",
+      "schema": "DMM260"
+    }
+  },
+  "SalesOrderItem": {
+    "target": {
+      "object": "SalesOrderItem",
+      "schema": "DMM260"
+    }
+  },
+  "SalesOrder_Years": {
+    "target": {
+      "object": "SalesOrder_Years",
+      "schema": "DMM260"
+    }
+  },
+  "Dummy": {
+    "target": {
+      "object": "DUMMY",
+      "schema": "SYS"
+    }
+  },
+  "Products": {
+    "target": {
+      "object": "Products",
+      "schema": "DMM260"
+    }
+  },
+  "historicalQuotesSAP": {
+    "target": {
+      "object": "historicalQuotesSAP",
+      "schema": "DMM260"
+    }
+  }
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sol::S2EX2_SALES_AND_PLAN" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Section 2, Exercise 2 Sales and plan data"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="db.shared::S2EX2_CurrentSales">
+    <resourceUri>db.shared::S2EX2_CurrentSales</resourceUri>
+  </DataSource>
+  <DataSource id="SalesPlan">
+    <resourceUri>SalesPlan</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="ProductId">
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount" aggregationType="sum">
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="OrgUnitName">
+        <descriptions defaultDescription="OrgUnitName"/>
+      </viewAttribute>
+      <viewAttribute id="SALESCHANNEL">
+        <descriptions defaultDescription="SALESCHANNEL"/>
+      </viewAttribute>
+      <viewAttribute id="ProductCategory">
+        <descriptions defaultDescription="ProductCategory"/>
+      </viewAttribute>
+      <viewAttribute id="YEARMONTH">
+        <descriptions defaultDescription="YEARMONTH"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmountPLAN" aggregationType="sum">
+        <descriptions defaultDescription="NetAmount_1"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Proj_Sales">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductCategory" source="ProductCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEARMONTH" source="YEARMONTH"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NetAmountPLAN" null="true" value=""/>
+    </input>
+    <input node="Proj_Plan">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ProductId" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NetAmount" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductCategory" source="ProductCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEARMONTH" source="YEARMONTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmountPLAN" source="NetAmount"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_Sales">
+    <viewAttributes>
+      <viewAttribute id="ProductId">
+        <descriptions defaultDescription="ProductId"/>
+      </viewAttribute>
+      <viewAttribute id="NetAmount" aggregationType="sum">
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="OrgUnitName">
+        <descriptions defaultDescription="OrgUnitName"/>
+      </viewAttribute>
+      <viewAttribute id="SALESCHANNEL">
+        <descriptions defaultDescription="SALESCHANNEL"/>
+      </viewAttribute>
+      <viewAttribute id="ProductCategory">
+        <descriptions defaultDescription="ProductCategory"/>
+      </viewAttribute>
+      <viewAttribute id="YEARMONTH">
+        <descriptions defaultDescription="YEARMONTH"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="db.shared::S2EX2_CurrentSales">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductCategory" source="ProductCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEARMONTH" source="YEARMONTH"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Proj_Plan">
+    <viewAttributes>
+      <viewAttribute id="NetAmount" aggregationType="sum">
+        <descriptions defaultDescription="NetAmount"/>
+      </viewAttribute>
+      <viewAttribute id="OrgUnitId">
+        <descriptions defaultDescription="OrgUnitId"/>
+      </viewAttribute>
+      <viewAttribute id="OrgUnitName">
+        <descriptions defaultDescription="OrgUnitName"/>
+      </viewAttribute>
+      <viewAttribute id="ProductCategory">
+        <descriptions defaultDescription="ProductCategory"/>
+      </viewAttribute>
+      <viewAttribute id="SALESCHANNEL">
+        <descriptions defaultDescription="SALESCHANNEL"/>
+      </viewAttribute>
+      <viewAttribute id="YEARMONTH">
+        <descriptions defaultDescription="YEARMONTH"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SalesPlan">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitId" source="OrgUnitId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrgUnitName" source="OrgUnitName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductCategory" source="ProductCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESCHANNEL" source="SALESCHANNEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEARMONTH" source="YEARMONTH"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="ProductId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProductId"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProductId"/>
+    </attribute>
+    <attribute id="OrgUnitName" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OrgUnitName"/>
+      <keyMapping columnObjectName="Union_1" columnName="OrgUnitName"/>
+    </attribute>
+    <attribute id="SALESCHANNEL" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESCHANNEL"/>
+      <keyMapping columnObjectName="Union_1" columnName="SALESCHANNEL"/>
+    </attribute>
+    <attribute id="ProductCategory" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProductCategory"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProductCategory"/>
+    </attribute>
+    <attribute id="YEARMONTH" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEARMONTH"/>
+      <keyMapping columnObjectName="Union_1" columnName="YEARMONTH"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="NetAmount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetAmount"/>
+      <measureMapping columnObjectName="Union_1" columnName="NetAmount"/>
+    </measure>
+    <measure id="NetAmountPLAN" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetAmountPLAN"/>
+      <measureMapping columnObjectName="Union_1" columnName="NetAmountPLAN"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="201"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_Sales" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="307"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Proj_Plan" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="268" y="307"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
