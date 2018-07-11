@@ -1,4 +1,4 @@
 {
     "name":      "exercise",
-    "subfolder": "ignore"    
+    "subfolder": "append"    
 }
